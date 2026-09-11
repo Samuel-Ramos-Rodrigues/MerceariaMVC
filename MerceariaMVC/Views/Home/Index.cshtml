@@ -2,70 +2,339 @@
     ViewData["Title"] = "Início";
 }
 
-<div class="py-4 py-md-5">
-    <div class="mb-4 mb-md-5">
-        <span class="badge bg-success-subtle text-success border border-success-subtle mb-3">MerceariaMVC</span>
-        <h1 class="display-6 fw-semibold mb-2">Sistema da Mercearia</h1>
-        <p class="text-muted mb-0 col-lg-8">
-            Acesse os cadastros de clientes e produtos de forma rápida e organizada.
-        </p>
-    </div>
+<div class="screen home-screen">
 
-    <div class="row g-4">
-        <div class="col-md-6">
-            <div class="card h-100 shadow-sm border-0">
-                <div class="card-body p-4">
-                    <div class="d-flex align-items-center gap-3 mb-3">
-                        <div class="rounded-circle bg-primary-subtle text-primary fw-bold d-flex align-items-center justify-content-center"
-                             style="width: 48px; height: 48px; font-size: 1.1rem;">
-                            C
-                        </div>
-                        <div>
-                            <h2 class="h5 mb-1">Clientes</h2>
-                            <span class="text-muted small">Gerenciamento de cadastros</span>
-                        </div>
-                    </div>
+    <section class="home-hero">
 
-                    <p class="text-muted mb-4">
-                        Cadastre novos clientes, consulte informações, edite dados ou remova registros.
-                    </p>
+        <div class="hero-copy">
 
-                    <div class="d-flex flex-wrap gap-2">
-                        <a asp-controller="Cliente" asp-action="Index" class="btn btn-primary">Ver clientes</a>
-                        <a asp-controller="Cliente" asp-action="Create" class="btn btn-outline-primary">Novo cliente</a>
-                    </div>
-                </div>
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Gestão simples para o dia a dia
             </div>
+
+            <h1>
+                Organize sua mercearia
+                <span>sem complicação.</span>
+            </h1>
+
+            <p class="hero-lead">
+                Centralize o cadastro de clientes, produtos e o acompanhamento
+                do estoque em uma interface direta, moderna e fácil de usar.
+            </p>
+
+            <div class="hero-actions">
+
+                <a asp-controller="Produto"
+                   asp-action="Create"
+                   class="hero-link-primary">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2">
+                        <path d="M12 5v14M5 12h14" />
+                    </svg>
+
+                    Cadastrar produto
+                </a>
+
+                <a asp-controller="Cliente"
+                   asp-action="Create"
+                   class="hero-link-secondary">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2">
+                        <path d="M12 5v14M5 12h14" />
+                    </svg>
+
+                    Cadastrar cliente
+                </a>
+
+            </div>
+
         </div>
 
-        <div class="col-md-6">
-            <div class="card h-100 shadow-sm border-0">
-                <div class="card-body p-4">
-                    <div class="d-flex align-items-center gap-3 mb-3">
-                        <div class="rounded-circle bg-success-subtle text-success fw-bold d-flex align-items-center justify-content-center"
-                             style="width: 48px; height: 48px; font-size: 1.1rem;">
-                            P
+        <div class="hero-visual">
+
+            <div class="hero-visual-ring"></div>
+
+            <div class="hero-dashboard">
+
+                <div class="dashboard-header">
+
+                    <span>Painel de gestão</span>
+
+                    <span class="dashboard-dots">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </span>
+
+                </div>
+
+                <div class="hero-module-list">
+
+                    <div class="hero-module">
+
+                        <div class="hero-module-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8">
+
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+
+                            </svg>
+
                         </div>
+
                         <div>
-                            <h2 class="h5 mb-1">Produtos</h2>
-                            <span class="text-muted small">Controle de produtos e estoque</span>
+                            <strong>Clientes</strong>
+                            <small>Cadastros e situação atual</small>
                         </div>
+
                     </div>
 
-                    <p class="text-muted mb-4">
-                        Consulte os produtos cadastrados, acompanhe o estoque e mantenha preços e dados atualizados.
+                    <div class="hero-module">
+
+                        <div class="hero-module-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8">
+
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                                <path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12" />
+
+                            </svg>
+
+                        </div>
+
+                        <div>
+                            <strong>Produtos</strong>
+                            <small>Preço e controle de estoque</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="hero-float-card">
+                <span class="float-label">Fluxo rápido</span>
+                <strong>Cadastre, consulte e atualize.</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="home-section">
+
+        <div class="section-title-row">
+
+            <div>
+                <span class="eyebrow">Acesso rápido</span>
+                <h2>Escolha o que deseja gerenciar</h2>
+            </div>
+
+            <p>
+                As duas áreas principais do sistema ficam
+                a um clique de distância.
+            </p>
+
+        </div>
+
+
+        <div class="home-module-grid">
+
+            <!-- CLIENTES -->
+
+            <article class="home-module-card client">
+
+                <div class="module-card-top">
+
+                    <div class="module-main-icon">
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="1.8">
+
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+
+                        </svg>
+
+                    </div>
+
+                    <span class="module-tag">
+                        Cadastros
+                    </span>
+
+                </div>
+
+                <div class="module-card-body">
+
+                    <h3>Clientes</h3>
+
+                    <p>
+                        Consulte informações, acompanhe o status
+                        e mantenha os cadastros dos clientes atualizados.
                     </p>
 
-                    <div class="d-flex flex-wrap gap-2">
-                        <a asp-controller="Produto" asp-action="Index" class="btn btn-success">Ver produtos</a>
-                        <a asp-controller="Produto" asp-action="Create" class="btn btn-outline-success">Novo produto</a>
-                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="alert alert-light border mt-4 mb-0" role="alert">
-        <strong>Dica:</strong> use os atalhos acima para acessar diretamente cada área do sistema.
-    </div>
+                <div class="module-capabilities">
+                    <span>Cadastro</span>
+                    <span>Edição</span>
+                    <span>Status</span>
+                    <span>Consulta</span>
+                </div>
+
+                <div class="module-card-actions">
+
+                    <a asp-controller="Cliente"
+                       asp-action="Index"
+                       class="module-main-link">
+
+                        Ver clientes
+
+                        <span>→</span>
+
+                    </a>
+
+                    <a asp-controller="Cliente"
+                       asp-action="Create"
+                       class="module-secondary-link">
+
+                        + Novo cliente
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUTOS -->
+
+            <article class="home-module-card product">
+
+                <div class="module-card-top">
+
+                    <div class="module-main-icon">
+
+                        <svg viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="1.8">
+
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                            <path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12" />
+
+                        </svg>
+
+                    </div>
+
+                    <span class="module-tag">
+                        Estoque
+                    </span>
+
+                </div>
+
+                <div class="module-card-body">
+
+                    <h3>Produtos</h3>
+
+                    <p>
+                        Organize preços e quantidades, identifique estoque
+                        baixo e mantenha seus produtos sob controle.
+                    </p>
+
+                </div>
+
+                <div class="module-capabilities">
+                    <span>Preço</span>
+                    <span>Estoque</span>
+                    <span>Cadastro</span>
+                    <span>Consulta</span>
+                </div>
+
+                <div class="module-card-actions">
+
+                    <a asp-controller="Produto"
+                       asp-action="Index"
+                       class="module-main-link">
+
+                        Ver produtos
+
+                        <span>→</span>
+
+                    </a>
+
+                    <a asp-controller="Produto"
+                       asp-action="Create"
+                       class="module-secondary-link">
+
+                        + Novo produto
+
+                    </a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+
+        <div class="workflow-strip">
+
+            <div class="workflow-item">
+
+                <span class="workflow-number">01</span>
+
+                <div>
+                    <strong>Cadastre</strong>
+                    <small>Insira os dados necessários.</small>
+                </div>
+
+            </div>
+
+            <div class="workflow-item">
+
+                <span class="workflow-number">02</span>
+
+                <div>
+                    <strong>Organize</strong>
+                    <small>Consulte tudo em listas claras.</small>
+                </div>
+
+            </div>
+
+            <div class="workflow-item">
+
+                <span class="workflow-number">03</span>
+
+                <div>
+                    <strong>Atualize</strong>
+                    <small>Mantenha dados e estoque em dia.</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
 </div>

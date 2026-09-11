@@ -1,66 +1,266 @@
-@model MerceariaMVC.Models.Cliente
+﻿@model MerceariaMVC.Models.Cliente
 
 @{
     ViewData["Title"] = "Novo cliente";
 }
 
-<div class="py-4">
-    <div class="mb-4">
-        <div class="small text-muted mb-1">Clientes</div>
-        <h1 class="h3 mb-1">Novo cliente</h1>
-        <p class="text-muted mb-0">Preencha os dados abaixo para realizar o cadastro.</p>
-    </div>
+<div class="screen client-theme">
 
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="card border-0 shadow-sm">
-                <div class="card-header bg-white py-3 px-4">
-                    <span class="fw-semibold">Dados do cliente</span>
-                </div>
-                <div class="card-body p-4">
-                    <form asp-action="Create">
-                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+    <div class="page-heading">
 
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label asp-for="Nome" class="form-label fw-semibold"></label>
-                                <input asp-for="Nome" class="form-control" placeholder="Nome do cliente" />
-                                <span asp-validation-for="Nome" class="text-danger small"></span>
-                            </div>
+        <div>
 
-                            <div class="col-md-6">
-                                <label asp-for="Email" class="form-label fw-semibold"></label>
-                                <input asp-for="Email" class="form-control" placeholder="email@exemplo.com" />
-                                <span asp-validation-for="Email" class="text-danger small"></span>
-                            </div>
+            <span class="eyebrow">
+                Clientes
+            </span>
 
-                            <div class="col-md-6">
-                                <label asp-for="Idade" class="form-label fw-semibold"></label>
-                                <input asp-for="Idade" class="form-control" />
-                                <span asp-validation-for="Idade" class="text-danger small"></span>
-                            </div>
+            <h1>Novo cliente</h1>
 
-                            <div class="col-md-6 d-flex align-items-end">
-                                <div class="border rounded w-100 px-3 py-2">
-                                    <div class="form-check mb-0">
-                                        <input class="form-check-input" asp-for="Ativo" />
-                                        <label class="form-check-label" asp-for="Ativo"></label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <p>
+                Preencha as informações abaixo
+                para criar um novo cadastro.
+            </p>
 
-                        <div class="d-flex gap-2 mt-4 pt-3 border-top">
-                            <button type="submit" class="btn btn-primary">Cadastrar cliente</button>
-                            <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
+
+        <a asp-action="Index"
+           class="ui-btn ui-btn-light">
+
+            ← Voltar para clientes
+
+        </a>
+
     </div>
+
+
+    <div class="form-layout">
+
+        <aside class="form-aside">
+
+            <div class="aside-accent"></div>
+
+            <div class="aside-body">
+
+                <div class="aside-icon">
+
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.8">
+
+                        <circle cx="12" cy="8" r="4" />
+
+                        <path d="M4 21a8 8 0 0 1 16 0" />
+
+                        <path d="M19 3v6M16 6h6" />
+
+                    </svg>
+
+                </div>
+
+                <h3>
+                    Cadastro de cliente
+                </h3>
+
+                <p>
+                    Informe dados válidos para que
+                    o cadastro fique pronto para uso.
+                </p>
+
+
+                <div class="aside-tips">
+
+                    <div class="aside-tip">
+
+                        <span class="tip-dot"></span>
+
+                        <span>
+                            Use um e-mail válido contendo @@.
+                        </span>
+
+                    </div>
+
+                    <div class="aside-tip">
+
+                        <span class="tip-dot"></span>
+
+                        <span>
+                            A idade mínima considerada
+                            pela regra é 18 anos.
+                        </span>
+
+                    </div>
+
+                    <div class="aside-tip">
+
+                        <span class="tip-dot"></span>
+
+                        <span>
+                            Defina se o cliente inicia ativo.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <section class="form-panel">
+
+            <div class="form-panel-header">
+
+                <h2>
+                    Dados do cliente
+                </h2>
+
+                <p>
+                    Campos principais do cadastro.
+                </p>
+
+            </div>
+
+
+            <div class="form-panel-body">
+
+                <form asp-action="Create">
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="text-danger mb-3">
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="field-group form-span-2">
+
+                            <label asp-for="Nome">
+                                Nome completo
+                            </label>
+
+                            <input asp-for="Nome"
+                                   class="form-control"
+                                   placeholder="Ex.: Maria de Souza"
+                                   autocomplete="name" />
+
+                            <span asp-validation-for="Nome"
+                                  class="text-danger small">
+                            </span>
+
+                        </div>
+
+
+                        <div class="field-group">
+
+                            <label asp-for="Email">
+                                E-mail
+                            </label>
+
+                            <input asp-for="Email"
+                                   class="form-control"
+                                   placeholder="cliente@exemplo.com"
+                                   autocomplete="email" />
+
+                            <span asp-validation-for="Email"
+                                  class="text-danger small">
+                            </span>
+
+                        </div>
+
+
+                        <div class="field-group">
+
+                            <label asp-for="Idade">
+                                Idade
+                            </label>
+
+                            <input asp-for="Idade"
+                                   class="form-control"
+                                   placeholder="Ex.: 25"
+                                   min="0" />
+
+                            <span asp-validation-for="Idade"
+                                  class="text-danger small">
+                            </span>
+
+                        </div>
+
+
+                        <div class="field-group form-span-2">
+
+                            <label>
+                                Situação do cliente
+                            </label>
+
+
+                            <div class="switch-panel">
+
+                                <div class="switch-copy">
+
+                                    <strong>
+                                        Cliente ativo
+                                    </strong>
+
+                                    <small>
+                                        Clientes ativos são identificados
+                                        rapidamente na listagem.
+                                    </small>
+
+                                </div>
+
+
+                                <div class="form-check form-switch m-0">
+
+                                    <input asp-for="Ativo"
+                                           class="form-check-input"
+                                           role="switch" />
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <a asp-action="Index"
+                           class="ui-btn ui-btn-light">
+
+                            Cancelar
+
+                        </a>
+
+                        <button type="submit"
+                                class="ui-btn ui-btn-primary">
+
+                            Salvar cliente
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </div>
+
 </div>
 
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    @{
+        await Html.RenderPartialAsync(
+            "_ValidationScriptsPartial"
+        );
+    }
+
 }
