@@ -1,7 +1,7 @@
 @model MerceariaMVC.Models.Produto
 
 @{
-    ViewData["Title"] = "Novo produto";
+    ViewData["Title"] = "Excluir produto";
 }
 
 <div class="screen product-theme">
@@ -14,11 +14,13 @@
                 Produtos
             </span>
 
-            <h1>Novo produto</h1>
+            <h1>
+                Excluir produto
+            </h1>
 
             <p>
-                Cadastre um item e defina
-                seu preço e quantidade em estoque.
+                Confira o item antes de removê-lo
+                do cadastro.
             </p>
 
         </div>
@@ -33,201 +35,115 @@
     </div>
 
 
-    <div class="form-layout">
+    <section class="danger-panel">
 
-        <aside class="form-aside">
+        <div class="danger-top">
 
-            <div class="aside-accent"></div>
+            <div class="danger-icon">
 
-            <div class="aside-body">
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8">
 
-                <div class="aside-icon">
+                    <path d="M10.3 2.8 1.7 18a2 2 0 0 0 1.7 3h17.2a2 2 0 0 0 1.7-3L13.7 2.8a2 2 0 0 0-3.4 0Z" />
 
-                    <svg viewBox="0 0 24 24"
-                         fill="none"
-                         stroke="currentColor"
-                         stroke-width="1.8">
+                    <path d="M12 9v4M12 17h.01" />
 
-                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-
-                        <path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12" />
-
-                    </svg>
-
-                </div>
-
-                <h3>
-                    Cadastro de produto
-                </h3>
-
-                <p>
-                    Informe os dados principais
-                    para o produto aparecer no estoque.
-                </p>
-
-
-                <div class="aside-tips">
-
-                    <div class="aside-tip">
-
-                        <span class="tip-dot"></span>
-
-                        <span>
-                            Use um nome fácil de identificar.
-                        </span>
-
-                    </div>
-
-                    <div class="aside-tip">
-
-                        <span class="tip-dot"></span>
-
-                        <span>
-                            O preço deve ser maior que zero.
-                        </span>
-
-                    </div>
-
-                    <div class="aside-tip">
-
-                        <span class="tip-dot"></span>
-
-                        <span>
-                            Informe a quantidade atual em estoque.
-                        </span>
-
-                    </div>
-
-                </div>
+                </svg>
 
             </div>
 
-        </aside>
 
+            <div>
 
-        <section class="form-panel">
-
-            <div class="form-panel-header">
-
-                <h2>Dados do produto</h2>
+                <h2>
+                    Esta ação é permanente
+                </h2>
 
                 <p>
-                    Informações usadas no cadastro
-                    e no estoque.
+                    Ao confirmar, o produto
+                    <strong>@Model.Nome</strong>
+                    será removido do sistema.
                 </p>
 
             </div>
 
-
-            <div class="form-panel-body">
-
-                <form asp-action="Create">
-
-                    <div asp-validation-summary="ModelOnly"
-                         class="text-danger mb-3">
-                    </div>
+        </div>
 
 
-                    <div class="form-grid">
+        <div class="danger-body">
 
-                        <div class="field-group form-span-2">
+            <div class="delete-summary">
 
-                            <label asp-for="Nome">
-                                Nome do produto
-                            </label>
+                <div class="delete-summary-item">
 
-                            <input asp-for="Nome"
-                                   class="form-control"
-                                   placeholder="Ex.: Arroz 1kg" />
+                    <span>Produto</span>
 
-                            <span asp-validation-for="Nome"
-                                  class="text-danger small">
-                            </span>
+                    <strong>
+                        @Model.Nome
+                    </strong>
 
-                        </div>
+                </div>
 
 
-                        <div class="field-group">
+                <div class="delete-summary-item">
 
-                            <label asp-for="Preco">
-                                Preço
-                            </label>
+                    <span>Preço</span>
 
+                    <strong>
 
-                            <div class="input-group">
+                        @Model.Preco.ToString(
+                        "C",
+                                                new System.Globalization.CultureInfo("pt-BR")
+                                                )
 
-                                <span class="input-group-text">
-                                    R$
-                                </span>
+                    </strong>
 
-                                <input asp-for="Preco"
-                                       class="form-control"
-                                       placeholder="0,00" />
-
-                            </div>
-
-                            <span asp-validation-for="Preco"
-                                  class="text-danger small">
-                            </span>
-
-                        </div>
+                </div>
 
 
-                        <div class="field-group">
+                <div class="delete-summary-item">
 
-                            <label asp-for="Estoque">
-                                Quantidade em estoque
-                            </label>
+                    <span>Estoque</span>
 
-                            <input asp-for="Estoque"
-                                   class="form-control"
-                                   placeholder="Ex.: 20"
-                                   min="0" />
+                    <strong>
+                        @Model.Estoque unidade(s)
+                    </strong>
 
-                            <span asp-validation-for="Estoque"
-                                  class="text-danger small">
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-actions">
-
-                        <a asp-action="Index"
-                           class="ui-btn ui-btn-light">
-
-                            Cancelar
-
-                        </a>
-
-                        <button type="submit"
-                                class="ui-btn ui-btn-amber">
-
-                            Salvar produto
-
-                        </button>
-
-                    </div>
-
-                </form>
+                </div>
 
             </div>
 
-        </section>
 
-    </div>
+            <form asp-action="Delete">
+
+                <input type="hidden"
+                       asp-for="IdProduto" />
+
+
+                <div class="form-actions">
+
+                    <a asp-action="Index"
+                       class="ui-btn ui-btn-light">
+
+                        Cancelar
+
+                    </a>
+
+                    <button type="submit"
+                            class="ui-btn ui-btn-danger">
+
+                        Confirmar exclusão
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
 
 </div>
-
-
-@section Scripts {
-
-    @{
-        await Html.RenderPartialAsync(
-            "_ValidationScriptsPartial"
-        );
-    }
-
-}
