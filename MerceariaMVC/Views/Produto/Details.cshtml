@@ -1,0 +1,55 @@
+@model MerceariaMVC.Models.Produto
+
+@{
+    ViewData["Title"] = "Detalhes do produto";
+}
+
+<div class="py-4">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+            <div class="small text-muted mb-1">Produtos</div>
+            <h1 class="h3 mb-1">Detalhes do produto</h1>
+            <p class="text-muted mb-0">Informações do produto selecionado.</p>
+        </div>
+        <a asp-action="Index" class="btn btn-outline-secondary">Voltar para produtos</a>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white py-3 px-4 d-flex justify-content-between align-items-center gap-3">
+                    <span class="fw-semibold">@Html.DisplayFor(model => model.Nome)</span>
+                    @if (Model.Estoque > 0)
+                    {
+                        <span class="badge bg-success-subtle text-success border border-success-subtle">Disponível</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger-subtle text-danger border border-danger-subtle">Sem estoque</span>
+                    }
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="text-muted small mb-1">Nome</div>
+                            <div class="fw-semibold">@Html.DisplayFor(model => model.Nome)</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-muted small mb-1">Preço</div>
+                            <div class="fw-semibold">@Html.DisplayFor(model => model.Preco)</div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-muted small mb-1">Estoque</div>
+                            <div class="fw-semibold">@Html.DisplayFor(model => model.Estoque) unidade(s)</div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2 mt-4 pt-3 border-top">
+                        <a asp-action="Edit" asp-route-id="@Model?.IdProduto" class="btn btn-success">Editar produto</a>
+                        <a asp-action="Delete" asp-route-id="@Model?.IdProduto" class="btn btn-outline-danger">Excluir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

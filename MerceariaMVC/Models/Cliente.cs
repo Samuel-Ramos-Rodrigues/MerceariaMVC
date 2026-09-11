@@ -6,7 +6,7 @@ namespace MerceariaMVC.Models
     public class Cliente
     {
         [Key]
-        public int Id { get; set; }
+        public int IdCliente { get; set; }
         [Required] 
         public string Nome { get; set; }
         [Required]

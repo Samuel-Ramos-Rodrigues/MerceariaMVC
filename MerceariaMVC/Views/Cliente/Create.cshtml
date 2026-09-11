@@ -1,0 +1,66 @@
+@model MerceariaMVC.Models.Cliente
+
+@{
+    ViewData["Title"] = "Novo cliente";
+}
+
+<div class="py-4">
+    <div class="mb-4">
+        <div class="small text-muted mb-1">Clientes</div>
+        <h1 class="h3 mb-1">Novo cliente</h1>
+        <p class="text-muted mb-0">Preencha os dados abaixo para realizar o cadastro.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white py-3 px-4">
+                    <span class="fw-semibold">Dados do cliente</span>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label asp-for="Nome" class="form-label fw-semibold"></label>
+                                <input asp-for="Nome" class="form-control" placeholder="Nome do cliente" />
+                                <span asp-validation-for="Nome" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="Email" class="form-label fw-semibold"></label>
+                                <input asp-for="Email" class="form-control" placeholder="email@exemplo.com" />
+                                <span asp-validation-for="Email" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label asp-for="Idade" class="form-label fw-semibold"></label>
+                                <input asp-for="Idade" class="form-control" />
+                                <span asp-validation-for="Idade" class="text-danger small"></span>
+                            </div>
+
+                            <div class="col-md-6 d-flex align-items-end">
+                                <div class="border rounded w-100 px-3 py-2">
+                                    <div class="form-check mb-0">
+                                        <input class="form-check-input" asp-for="Ativo" />
+                                        <label class="form-check-label" asp-for="Ativo"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-2 mt-4 pt-3 border-top">
+                            <button type="submit" class="btn btn-primary">Cadastrar cliente</button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

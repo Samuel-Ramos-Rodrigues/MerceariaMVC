@@ -1,0 +1,55 @@
+@model MerceariaMVC.Models.Cliente
+
+@{
+    ViewData["Title"] = "Excluir cliente";
+}
+
+<div class="py-4">
+    <div class="mb-4">
+        <div class="small text-muted mb-1">Clientes</div>
+        <h1 class="h3 mb-1">Excluir cliente</h1>
+        <p class="text-muted mb-0">Revise os dados antes de confirmar a exclusão.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card border-danger shadow-sm">
+                <div class="card-header bg-danger-subtle text-danger-emphasis py-3 px-4">
+                    <span class="fw-semibold">Confirmação de exclusão</span>
+                </div>
+                <div class="card-body p-4">
+                    <div class="alert alert-warning" role="alert">
+                        Esta ação removerá o cliente do sistema e não poderá ser desfeita.
+                    </div>
+
+                    <div class="row g-4 mt-1">
+                        <div class="col-md-6">
+                            <div class="text-muted small mb-1">Nome</div>
+                            <div class="fw-semibold">@Html.DisplayFor(model => model.Nome)</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-muted small mb-1">Email</div>
+                            <div class="fw-semibold">@Html.DisplayFor(model => model.Email)</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-muted small mb-1">Idade</div>
+                            <div class="fw-semibold">@Html.DisplayFor(model => model.Idade)</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-muted small mb-1">Status</div>
+                            <div class="fw-semibold">@(Model.Ativo ? "Ativo" : "Inativo")</div>
+                        </div>
+                    </div>
+
+                    <form asp-action="Delete" class="mt-4 pt-3 border-top">
+                        <input type="hidden" asp-for="IdCliente" />
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-danger">Confirmar exclusão</button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

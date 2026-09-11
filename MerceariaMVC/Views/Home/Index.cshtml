@@ -1,8 +1,71 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Início";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="py-4 py-md-5">
+    <div class="mb-4 mb-md-5">
+        <span class="badge bg-success-subtle text-success border border-success-subtle mb-3">MerceariaMVC</span>
+        <h1 class="display-6 fw-semibold mb-2">Sistema da Mercearia</h1>
+        <p class="text-muted mb-0 col-lg-8">
+            Acesse os cadastros de clientes e produtos de forma rápida e organizada.
+        </p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="rounded-circle bg-primary-subtle text-primary fw-bold d-flex align-items-center justify-content-center"
+                             style="width: 48px; height: 48px; font-size: 1.1rem;">
+                            C
+                        </div>
+                        <div>
+                            <h2 class="h5 mb-1">Clientes</h2>
+                            <span class="text-muted small">Gerenciamento de cadastros</span>
+                        </div>
+                    </div>
+
+                    <p class="text-muted mb-4">
+                        Cadastre novos clientes, consulte informações, edite dados ou remova registros.
+                    </p>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        <a asp-controller="Cliente" asp-action="Index" class="btn btn-primary">Ver clientes</a>
+                        <a asp-controller="Cliente" asp-action="Create" class="btn btn-outline-primary">Novo cliente</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="rounded-circle bg-success-subtle text-success fw-bold d-flex align-items-center justify-content-center"
+                             style="width: 48px; height: 48px; font-size: 1.1rem;">
+                            P
+                        </div>
+                        <div>
+                            <h2 class="h5 mb-1">Produtos</h2>
+                            <span class="text-muted small">Controle de produtos e estoque</span>
+                        </div>
+                    </div>
+
+                    <p class="text-muted mb-4">
+                        Consulte os produtos cadastrados, acompanhe o estoque e mantenha preços e dados atualizados.
+                    </p>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        <a asp-controller="Produto" asp-action="Index" class="btn btn-success">Ver produtos</a>
+                        <a asp-controller="Produto" asp-action="Create" class="btn btn-outline-success">Novo produto</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-light border mt-4 mb-0" role="alert">
+        <strong>Dica:</strong> use os atalhos acima para acessar diretamente cada área do sistema.
+    </div>
 </div>
