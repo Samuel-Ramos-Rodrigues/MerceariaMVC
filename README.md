@@ -2,16 +2,17 @@
 
 # 🛒 MerceariaMVC
 
-### Projeto ASP.NET Core MVC desenvolvido com foco em TDD e testes automatizados
+### Sistema de gerenciamento de clientes e produtos com ASP.NET Core MVC e TDD
 
 ![.NET](https://img.shields.io/badge/.NET-8.0-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
 ![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core-MVC-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
-![C%23](https://img.shields.io/badge/C%23-11%2B-239120?style=for-the-badge&logo=csharp&logoColor=white)
+![C%23](https://img.shields.io/badge/C%23-12-239120?style=for-the-badge&logo=csharp&logoColor=white)
+![Entity Framework Core](https://img.shields.io/badge/Entity_Framework-Core-512BD4?style=for-the-badge)
+![SQL Server](https://img.shields.io/badge/SQL_Server-Database-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white)
 ![xUnit](https://img.shields.io/badge/Testes-xUnit-5C2D91?style=for-the-badge)
 ![TDD](https://img.shields.io/badge/Metodologia-TDD-E34F26?style=for-the-badge)
-![GitHub Actions](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
 
-**Validação de regras de negócio de clientes e produtos utilizando testes unitários, xUnit e o padrão Arrange → Act → Assert.**
+**CRUD de clientes e produtos com persistência em SQL Server, interface MVC e testes unitários das regras de negócio.**
 
 </div>
 
@@ -19,43 +20,80 @@
 
 ## 📌 Sobre o projeto
 
-O **MerceariaMVC** é um projeto de estudo construído em **ASP.NET Core MVC (.NET 8)** para praticar **TDD — Test-Driven Development** e testes unitários.
+O **MerceariaMVC** é uma aplicação web desenvolvida em **ASP.NET Core MVC (.NET 8)** para praticar conceitos de desenvolvimento web, banco de dados e **TDD — Test-Driven Development**.
 
-O projeto possui uma aplicação MVC e um projeto de testes separado. As regras de negócio são concentradas principalmente nos modelos `Cliente` e `Produto`, enquanto o projeto `MerceariaMVCTests` verifica os diferentes cenários de validação.
+O sistema possui duas áreas principais:
 
-### Principais objetivos
+- **Clientes** — cadastro, consulta, edição e exclusão de clientes;
+- **Produtos** — cadastro, consulta, edição e exclusão de produtos e seus dados de estoque.
 
-- Praticar o ciclo **Red → Green → Refactor** do TDD;
-- Separar aplicação e testes em projetos distintos;
-- Criar testes unitários com **xUnit**;
-- Validar regras de negócio antes de evoluir novas funcionalidades;
-- Utilizar o padrão **AAA — Arrange, Act, Assert**;
-- Preparar o repositório para integração contínua no GitHub.
+A página inicial funciona como ponto de acesso para os dois módulos, com atalhos para visualizar e cadastrar registros.
+
+---
+
+## ✨ Funcionalidades
+
+### 👤 Clientes
+
+- Listagem de clientes cadastrados;
+- Cadastro de novos clientes;
+- Edição de dados;
+- Visualização de detalhes;
+- Exclusão de registros;
+- Controle de cliente ativo/inativo;
+- Validação de idade, nome e e-mail;
+- Regra para verificar se o cliente pode realizar compras.
+
+### 📦 Produtos
+
+- Listagem de produtos;
+- Cadastro de novos produtos;
+- Edição de nome, preço e estoque;
+- Visualização de detalhes;
+- Exclusão de registros;
+- Validação de preço e quantidade em estoque.
+
+### 🏠 Home
+
+A Home possui atalhos para os dois módulos do sistema:
+
+```text
+Home
+├── Clientes
+│   ├── Ver clientes
+│   └── Novo cliente
+│
+└── Produtos
+    ├── Ver produtos
+    └── Novo produto
+```
 
 ---
 
 ## 🧪 TDD no projeto
 
-O TDD propõe que os testes orientem o desenvolvimento do código.
+O projeto possui um projeto de testes separado, chamado **MerceariaMVCTests**, utilizando **xUnit**.
+
+O desenvolvimento orientado a testes segue o ciclo:
 
 ```mermaid
 flowchart LR
-    A[🔴 RED<br/>Criar um teste que falha] --> B[🟢 GREEN<br/>Implementar o mínimo necessário]
+    A[🔴 RED<br/>Criar um teste que falha] --> B[🟢 GREEN<br/>Implementar o necessário]
     B --> C[🔵 REFACTOR<br/>Melhorar o código]
     C --> A
 ```
 
-### 1. 🔴 Red
+### 🔴 Red
 
-Primeiro é definido o comportamento esperado por meio de um teste. Nesse momento, o teste pode falhar porque a regra ainda não foi implementada.
+Primeiro é criado um teste que representa o comportamento esperado.
 
-### 2. 🟢 Green
+### 🟢 Green
 
-A implementação recebe apenas o código necessário para fazer o teste passar.
+Em seguida é implementado o mínimo necessário para fazer o teste passar.
 
-### 3. 🔵 Refactor
+### 🔵 Refactor
 
-Com os testes protegendo o comportamento esperado, o código pode ser reorganizado e melhorado com mais segurança.
+Depois o código pode ser reorganizado e melhorado mantendo os testes como proteção contra regressões.
 
 ---
 
@@ -63,9 +101,16 @@ Com os testes protegendo o comportamento esperado, o código pode ser reorganiza
 
 ### 👤 Cliente
 
-A classe `Cliente` possui validações relacionadas aos dados cadastrais e à permissão para realizar compras.
+A classe `Cliente` possui os métodos:
 
-| Regra | Comportamento esperado |
+```csharp
+cliente.ValidacaoCliente();
+cliente.PodeComprar();
+```
+
+Regras verificadas:
+
+| Situação | Resultado esperado |
 |---|---|
 | Idade não informada | Cliente inválido |
 | Idade menor que 18 anos | Cliente inválido |
@@ -73,106 +118,30 @@ A classe `Cliente` possui validações relacionadas aos dados cadastrais e à pe
 | Nome vazio | Cliente inválido |
 | Cliente inativo | Não pode comprar |
 | Cliente ativo e maior de idade | Pode comprar |
-| Nome, idade e e-mail válidos | Cliente válido |
-
-Métodos envolvidos:
-
-```csharp
-cliente.ValidacaoCliente();
-cliente.PodeComprar();
-```
+| Dados válidos | Cliente válido |
 
 ### 📦 Produto
 
-A classe `Produto` valida as informações essenciais antes de considerar um produto válido.
+A classe `Produto` possui o método:
 
-| Regra | Comportamento esperado |
+```csharp
+produto.Validacao();
+```
+
+Regras verificadas:
+
+| Situação | Resultado esperado |
 |---|---|
 | Preço igual ou menor que zero | Produto inválido |
 | Estoque igual ou menor que zero | Produto inválido |
 | Nome vazio | Produto inválido |
 | Nome, preço e estoque válidos | Produto válido |
 
-Método envolvido:
-
-```csharp
-produto.Validacao();
-```
-
----
-
-## 🧱 Arquitetura
-
-```mermaid
-flowchart TD
-    U[Usuário] --> V[Views / Razor]
-    V --> C[Controllers]
-    C --> M[Models / Regras de negócio]
-    T[xUnit Tests] --> M
-```
-
-A solução é dividida em dois projetos:
-
-- **MerceariaMVC** — aplicação ASP.NET Core MVC;
-- **MerceariaMVCTests** — testes unitários da aplicação.
-
----
-
-## 📂 Estrutura do projeto
-
-```text
-MerceariaMVC/
-│
-├── .github/
-│   └── workflows/
-│       └── dotnet-tests.yml
-│
-├── MerceariaMVC/
-│   ├── Controllers/
-│   │   └── HomeController.cs
-│   ├── Models/
-│   │   ├── Cliente.cs
-│   │   ├── Produto.cs
-│   │   └── ErrorViewModel.cs
-│   ├── Views/
-│   ├── wwwroot/
-│   ├── Program.cs
-│   └── MerceariaMVC.csproj
-│
-├── MerceariaMVCTests/
-│   ├── ClienteTests.cs
-│   ├── ProdutoTests.cs
-│   ├── UnitTest1.cs
-│   └── MerceariaMVCTests.csproj
-│
-├── .gitignore
-├── MerceariaMVC.sln
-└── README.md
-```
-
-> `bin/`, `obj/` e `.vs/` são arquivos gerados localmente e ficam fora do versionamento por meio do `.gitignore`.
-
----
-
-## 🛠️ Tecnologias utilizadas
-
-| Tecnologia | Uso no projeto |
-|---|---|
-| **C#** | Linguagem principal |
-| **.NET 8** | Plataforma da aplicação |
-| **ASP.NET Core MVC** | Estrutura Web MVC |
-| **Razor** | Construção das Views |
-| **Bootstrap** | Base visual do template MVC |
-| **xUnit** | Framework de testes unitários |
-| **Microsoft.NET.Test.Sdk** | Execução dos testes .NET |
-| **Coverlet** | Coleta de cobertura de testes |
-| **GitHub Actions** | Execução automática de build e testes |
-
 ---
 
 ## 🧩 Padrão AAA nos testes
 
-Os testes seguem o padrão **Arrange → Act → Assert**.
+Os testes utilizam o padrão **Arrange → Act → Assert**.
 
 ```csharp
 [Fact]
@@ -195,62 +164,214 @@ public void Verificar_Email_Invalido()
 }
 ```
 
-| Etapa | Função |
+| Etapa | Responsabilidade |
 |---|---|
-| **Arrange** | Prepara os objetos, dados e condições do teste |
-| **Act** | Executa a funcionalidade que será testada |
-| **Assert** | Confirma se o resultado obtido é o esperado |
+| **Arrange** | Prepara os dados e objetos do teste |
+| **Act** | Executa a funcionalidade testada |
+| **Assert** | Confirma se o resultado é o esperado |
 
 ---
 
-## 🚀 Como executar o projeto
+## 🏗️ Arquitetura
+
+O projeto segue o padrão **MVC — Model, View, Controller**.
+
+```mermaid
+flowchart TD
+    U[Usuário] --> V[Views Razor]
+    V --> C[Controllers]
+    C --> D[MerceariaContext]
+    D --> DB[(SQL Server)]
+    C --> M[Models]
+    T[xUnit Tests] --> M
+```
+
+### Models
+
+Representam os dados e concentram as regras de negócio utilizadas nos testes.
+
+- `Cliente.cs`
+- `Produto.cs`
+
+### Views
+
+Responsáveis pela interface do sistema, utilizando **Razor + Bootstrap**.
+
+Cada módulo possui páginas para:
+
+- `Index`
+- `Create`
+- `Edit`
+- `Details`
+- `Delete`
+
+### Controllers
+
+Recebem as requisições, acessam o banco pelo Entity Framework Core e retornam as Views.
+
+- `HomeController`
+- `ClienteController`
+- `ProdutoController`
+
+### Data
+
+O `MerceariaContext` é o `DbContext` da aplicação e disponibiliza:
+
+```csharp
+public DbSet<Cliente> Clientes { get; set; }
+public DbSet<Produto> Produtos { get; set; }
+```
+
+---
+
+## 🗄️ Banco de dados
+
+A persistência é feita utilizando:
+
+- **Entity Framework Core 8**;
+- **SQL Server**;
+- **Migrations**.
+
+A conexão é configurada no `Program.cs` por meio de `DefaultConnection`:
+
+```csharp
+builder.Services.AddDbContext<MerceariaContext>(x =>
+    x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+```
+
+> Configure a `DefaultConnection` no `appsettings.json` ou `appsettings.Development.json` de acordo com a sua instância do SQL Server.
+
+### Aplicar as migrations
+
+```bash
+dotnet ef database update --project MerceariaMVC/MerceariaMVC.csproj
+```
+
+Caso a ferramenta `dotnet-ef` ainda não esteja instalada:
+
+```bash
+dotnet tool install --global dotnet-ef
+```
+
+---
+
+## 📂 Estrutura do projeto
+
+```text
+MerceariaMVC/
+│
+├── MerceariaMVC/
+│   ├── Controllers/
+│   │   ├── ClienteController.cs
+│   │   ├── HomeController.cs
+│   │   └── ProdutoController.cs
+│   │
+│   ├── Data/
+│   │   └── MerceariaContext.cs
+│   │
+│   ├── Migrations/
+│   │
+│   ├── Models/
+│   │   ├── Cliente.cs
+│   │   ├── Produto.cs
+│   │   └── ErrorViewModel.cs
+│   │
+│   ├── Views/
+│   │   ├── Cliente/
+│   │   ├── Home/
+│   │   ├── Produto/
+│   │   └── Shared/
+│   │
+│   ├── wwwroot/
+│   ├── Program.cs
+│   ├── appsettings.json
+│   └── MerceariaMVC.csproj
+│
+├── MerceariaMVCTests/
+│   ├── ClienteTests.cs
+│   ├── ProdutoTests.cs
+│   └── MerceariaMVCTests.csproj
+│
+├── MerceariaMVC.sln
+├── .gitignore
+└── README.md
+```
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+| Tecnologia | Uso |
+|---|---|
+| **C#** | Linguagem principal |
+| **.NET 8** | Plataforma da aplicação |
+| **ASP.NET Core MVC** | Estrutura web |
+| **Razor** | Construção das páginas |
+| **Bootstrap** | Estilização da interface |
+| **Entity Framework Core** | Acesso e persistência de dados |
+| **SQL Server** | Banco de dados |
+| **Migrations** | Versionamento da estrutura do banco |
+| **xUnit** | Testes unitários |
+| **Coverlet** | Coleta de cobertura dos testes |
+
+---
+
+## 🚀 Como executar
 
 ### Pré-requisitos
 
-Instale:
-
 - [.NET SDK 8](https://dotnet.microsoft.com/download/dotnet/8.0)
-- Visual Studio 2022, Visual Studio Code ou Rider *(opcional)*
-- Git *(para clonar o repositório)*
+- SQL Server
+- Visual Studio 2022, Rider ou VS Code
 
 ### 1. Clone o repositório
 
 ```bash
-git clone <URL-DO-SEU-REPOSITORIO>
+git clone https://github.com/Samuel-Ramos-Rodrigues/MerceariaMVC.git
 cd MerceariaMVC
 ```
 
-### 2. Restaure as dependências
+### 2. Restaure os pacotes
 
 ```bash
 dotnet restore MerceariaMVC.sln
 ```
 
-### 3. Compile a solução
+### 3. Configure o banco
+
+Defina a `DefaultConnection` no arquivo de configuração apropriado para o seu ambiente.
+
+### 4. Atualize o banco de dados
+
+```bash
+dotnet ef database update --project MerceariaMVC/MerceariaMVC.csproj
+```
+
+### 5. Compile a solução
 
 ```bash
 dotnet build MerceariaMVC.sln
 ```
 
-### 4. Execute a aplicação
+### 6. Execute a aplicação
 
 ```bash
 dotnet run --project MerceariaMVC/MerceariaMVC.csproj
 ```
 
-O terminal exibirá os endereços locais disponibilizados pelo ASP.NET Core.
+Depois, abra no navegador o endereço exibido pelo terminal.
 
 ---
 
-## 🧪 Como executar os testes
+## 🧪 Executando os testes
 
-Para executar todos os testes da solução:
+Para executar todos os testes:
 
 ```bash
 dotnet test MerceariaMVC.sln
 ```
 
-Para executar apenas o projeto de testes:
+Ou somente o projeto de testes:
 
 ```bash
 dotnet test MerceariaMVCTests/MerceariaMVCTests.csproj
@@ -258,56 +379,69 @@ dotnet test MerceariaMVCTests/MerceariaMVCTests.csproj
 
 ### Cobertura de testes
 
-O projeto já possui o `coverlet.collector`. Para gerar cobertura:
-
 ```bash
 dotnet test MerceariaMVC.sln --collect:"XPlat Code Coverage"
 ```
 
-O resultado será gerado na pasta `TestResults` do projeto de testes.
+Os resultados serão gerados em `TestResults`.
 
 ---
 
-## ⚙️ Integração contínua
+## 🎨 Interface
 
-O repositório inclui um workflow em:
+A interface foi mantida simples e objetiva, utilizando os componentes já disponíveis no **Bootstrap**.
 
-```text
-.github/workflows/dotnet-tests.yml
+A estilização atual inclui:
+
+- Home com atalhos para Clientes e Produtos;
+- Cards simples para os módulos principais;
+- Tabelas organizadas nas listagens;
+- Formulários de cadastro e edição mais claros;
+- Páginas de detalhes e exclusão padronizadas;
+- Botões diferenciados para ações como editar, visualizar e excluir;
+- Layout responsivo.
+
+---
+
+## 🔄 Fluxo geral do sistema
+
+```mermaid
+flowchart LR
+    H[Home] --> C[Clientes]
+    H --> P[Produtos]
+
+    C --> C1[Listar]
+    C --> C2[Cadastrar]
+    C --> C3[Editar]
+    C --> C4[Detalhes]
+    C --> C5[Excluir]
+
+    P --> P1[Listar]
+    P --> P2[Cadastrar]
+    P --> P3[Editar]
+    P --> P4[Detalhes]
+    P --> P5[Excluir]
 ```
 
-Sempre que ocorrer um **push** ou **pull request**, o GitHub Actions poderá:
-
-1. Baixar o código do repositório;
-2. Configurar o .NET 8;
-3. Restaurar as dependências;
-4. Compilar a solução em modo `Release`;
-5. Executar os testes automatizados;
-6. Gerar os arquivos de cobertura de testes.
-
-Isso ajuda a impedir que alterações futuras quebrem comportamentos já testados.
-
 ---
 
-## 💡 Próximas evoluções
+## 💡 Possíveis evoluções
 
-Algumas evoluções possíveis para continuar aplicando TDD:
-
-- Criar testes com `[Theory]` e `[InlineData]` para vários cenários;
-- Melhorar as validações de e-mail e dados nulos;
-- Adicionar serviços para separar regras de negócio dos Models;
+- Adicionar relacionamento entre clientes, compras e produtos;
+- Criar módulo de vendas;
+- Registrar histórico de compras;
+- Implementar controle de entrada e saída do estoque;
 - Criar testes para Controllers;
-- Adicionar persistência com Entity Framework Core;
-- Implementar CRUD de clientes e produtos;
-- Adicionar banco de dados;
-- Aumentar a cobertura de testes;
-- Publicar relatório de cobertura no CI.
+- Utilizar `[Theory]` e `[InlineData]` nos testes;
+- Criar camada de serviços para regras de negócio;
+- Adicionar autenticação e controle de acesso;
+- Aumentar a cobertura de testes.
 
 ---
 
 ## 📚 Conceitos praticados
 
-`TDD` · `Testes Unitários` · `xUnit` · `AAA` · `ASP.NET Core MVC` · `C#` · `.NET 8` · `Clean Code` · `CI`
+`TDD` · `xUnit` · `Testes Unitários` · `AAA` · `ASP.NET Core MVC` · `Entity Framework Core` · `SQL Server` · `CRUD` · `Razor` · `Bootstrap` · `C#` · `.NET 8`
 
 ---
 
@@ -315,8 +449,6 @@ Algumas evoluções possíveis para continuar aplicando TDD:
 
 ### 🛒 MerceariaMVC
 
-**Projeto desenvolvido para estudo e prática de desenvolvimento orientado a testes.**
-
-⭐ Se este repositório foi útil para seus estudos, considere deixar uma estrela.
+**Projeto desenvolvido para estudo de ASP.NET Core MVC, CRUD, Entity Framework Core e desenvolvimento orientado a testes.**
 
 </div>
