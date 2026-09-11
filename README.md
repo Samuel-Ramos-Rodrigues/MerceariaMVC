@@ -327,7 +327,7 @@ MerceariaMVC/
 ### 1. Clone o repositório
 
 ```bash
-git clone <URL-DO-SEU-REPOSITORIO>
+git clone https://github.com/Samuel-Ramos-Rodrigues/MerceariaMVC.git
 cd MerceariaMVC
 ```
 
