@@ -41,6 +41,10 @@ A página inicial funciona como ponto de acesso para os dois módulos, com atalh
 - Visualização de detalhes;
 - Exclusão de registros;
 - Controle de cliente ativo/inativo;
+- Pesquisa em tempo real por nome ou e-mail;
+- Filtro por status: ativo ou inativo;
+- Indicadores com total de clientes, ativos e inativos;
+- Interface responsiva para desktop e dispositivos móveis;
 - Validação de idade, nome e e-mail;
 - Regra para verificar se o cliente pode realizar compras.
 
@@ -51,6 +55,11 @@ A página inicial funciona como ponto de acesso para os dois módulos, com atalh
 - Edição de nome, preço e estoque;
 - Visualização de detalhes;
 - Exclusão de registros;
+- Pesquisa em tempo real por nome;
+- Filtro por situação do estoque;
+- Indicadores de total de produtos, estoque baixo e produtos sem estoque;
+- Identificação visual de produtos disponíveis, com estoque baixo ou sem estoque;
+- Interface responsiva para desktop e dispositivos móveis;
 - Validação de preço e quantidade em estoque.
 
 ### 🏠 Home
@@ -195,7 +204,9 @@ Representam os dados e concentram as regras de negócio utilizadas nos testes.
 
 ### Views
 
-Responsáveis pela interface do sistema, utilizando **Razor + Bootstrap**.
+Responsáveis pela interface do sistema, utilizando **Razor, Bootstrap, CSS personalizado e JavaScript no front-end**.
+
+A interface possui uma identidade visual própria, com tons de verde e laranja inspirados no contexto de uma mercearia. As listagens contam com pesquisa e filtros executados diretamente no navegador, sem alterar a lógica dos Controllers.
 
 Cada módulo possui páginas para:
 
@@ -307,7 +318,9 @@ MerceariaMVC/
 | **.NET 8** | Plataforma da aplicação |
 | **ASP.NET Core MVC** | Estrutura web |
 | **Razor** | Construção das páginas |
-| **Bootstrap** | Estilização da interface |
+| **Bootstrap** | Base responsiva e componentes da interface |
+| **CSS personalizado** | Identidade visual, cards, tabelas, formulários e responsividade |
+| **JavaScript** | Pesquisa e filtros dinâmicos nas listagens |
 | **Entity Framework Core** | Acesso e persistência de dados |
 | **SQL Server** | Banco de dados |
 | **Migrations** | Versionamento da estrutura do banco |
@@ -389,17 +402,37 @@ Os resultados serão gerados em `TestResults`.
 
 ## 🎨 Interface
 
-A interface foi mantida simples e objetiva, utilizando os componentes já disponíveis no **Bootstrap**.
+A interface do **MerceariaMVC** foi personalizada para fugir do visual padrão do Bootstrap e possuir uma identidade própria relacionada ao contexto de uma mercearia.
 
-A estilização atual inclui:
+O projeto utiliza uma paleta baseada em **verde, verde acinzentado e laranja/dourado**, evitando o uso predominante de fundo branco. O resultado é uma interface mais moderna, visualmente consistente e ainda simples de utilizar.
 
-- Home com atalhos para Clientes e Produtos;
-- Cards simples para os módulos principais;
-- Tabelas organizadas nas listagens;
-- Formulários de cadastro e edição mais claros;
-- Páginas de detalhes e exclusão padronizadas;
-- Botões diferenciados para ações como editar, visualizar e excluir;
-- Layout responsivo.
+### Destaques visuais
+
+- Home redesenhada com área de destaque e acessos rápidos;
+- Identidade visual própria para o módulo de Clientes;
+- Identidade visual própria para o módulo de Produtos;
+- Fundo em tons de verde acinzentado;
+- Cards, painéis e formulários em tons suaves de verde;
+- Tons de laranja/dourado para destacar Produtos e Estoque;
+- Indicadores visuais para clientes ativos e inativos;
+- Indicadores de estoque disponível, baixo ou zerado;
+- Tabelas responsivas e estilizadas;
+- Formulários de cadastro e edição personalizados;
+- Páginas de detalhes e exclusão com layout próprio;
+- Botões e estados de interação com animações discretas;
+- Layout adaptado para desktop e dispositivos móveis.
+
+### Recursos dinâmicos
+
+As páginas de listagem também possuem recursos executados diretamente no navegador:
+
+- Pesquisa de clientes por nome ou e-mail;
+- Filtro de clientes por status;
+- Pesquisa de produtos por nome;
+- Filtro de produtos por situação do estoque;
+- Atualização automática da quantidade de registros exibidos.
+
+Esses recursos são implementados no front-end e não alteram a lógica dos Controllers, Models ou do banco de dados.
 
 ---
 
@@ -441,7 +474,7 @@ flowchart LR
 
 ## 📚 Conceitos praticados
 
-`TDD` · `xUnit` · `Testes Unitários` · `AAA` · `ASP.NET Core MVC` · `Entity Framework Core` · `SQL Server` · `CRUD` · `Razor` · `Bootstrap` · `C#` · `.NET 8`
+`TDD` · `xUnit` · `Testes Unitários` · `AAA` · `ASP.NET Core MVC` · `Entity Framework Core` · `SQL Server` · `CRUD` · `Razor` · `Bootstrap` · `CSS` · `JavaScript` · `C#` · `.NET 8`
 
 ---
 
